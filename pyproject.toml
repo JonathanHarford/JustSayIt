@@ -1,0 +1,150 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "justsayit"
+version = "0.1.0"
+description = "Cross-platform accessibility tool with offline TTS and OCR capabilities"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "JustSayIt Team", email = "contact@justsayit.dev"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+]
+keywords = ["accessibility", "tts", "text-to-speech", "ocr", "screen-reader", "offline"]
+requires-python = ">=3.9"
+dependencies = [
+    "PyQt6>=6.5.0",
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "sounddevice>=0.4.6",
+    "pillow>=9.5.0",
+    "pynput>=1.7.6",
+    "pyyaml>=6.0",
+    "requests>=2.31.0",
+    "numpy>=1.24.0",
+    "librosa>=0.10.0",
+    "opencv-python>=4.8.0",
+]
+dynamic = ["readme"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-qt>=4.2.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.3.0",
+]
+test = [
+    "pytest>=7.4.0",
+    "pytest-qt>=4.2.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.0",
+]
+
+[project.scripts]
+justsayit = "justsayit.main:main"
+
+[project.urls]
+Homepage = "https://github.com/justsayit/justsayit"
+Documentation = "https://justsayit.readthedocs.io/"
+Repository = "https://github.com/justsayit/justsayit.git"
+Issues = "https://github.com/justsayit/justsayit/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+justsayit = [
+    "config/*.yaml",
+    "assets/*",
+    "assets/icons/*",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+    "--cov=src/justsayit",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["src/justsayit"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

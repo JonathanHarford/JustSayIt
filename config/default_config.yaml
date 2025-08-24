@@ -1,0 +1,54 @@
+# JustSayIt Default Configuration
+# This file contains the default settings for JustSayIt
+# User configurations will be stored in ~/.justsayit/config.yaml
+
+hotkeys:
+  # Hotkey to read selected text aloud
+  tts_selection: "ctrl+shift+s"
+  
+  # Hotkey to start OCR area selection
+  ocr_area: "ctrl+shift+a"
+  
+  # Hotkey to stop current speech
+  stop_speech: "ctrl+shift+x"
+
+settings:
+  tts:
+    # TTS model to use (will be downloaded if not available)
+    model: "coqui-tts/tts_models/en/ljspeech/tacotron2-DDC"
+    
+    # Voice settings
+    voice: "default"
+    speech_rate: 1.0  # Speed multiplier (0.5 = half speed, 2.0 = double speed)
+    pitch: 1.0        # Pitch multiplier
+    volume: 0.8       # Volume (0.0 to 1.0)
+  
+  ocr:
+    # OCR model to use
+    model: "microsoft/trocr-base-printed"
+    
+    # Image preprocessing
+    preprocessing: true
+    
+    # Confidence threshold for text extraction (0.0 to 1.0)
+    confidence_threshold: 0.7
+  
+  ui:
+    # Show notifications for actions
+    show_notifications: true
+    
+    # Minimize to system tray instead of closing
+    minimize_to_tray: true
+    
+    # Theme (light/dark/system)
+    theme: "system"
+  
+  system:
+    # Start JustSayIt automatically on system startup
+    auto_start: false
+    
+    # Logging level (DEBUG, INFO, WARNING, ERROR)
+    log_level: "INFO"
+    
+    # Maximum log file size in MB
+    max_log_size: 10

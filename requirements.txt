@@ -1,0 +1,21 @@
+# Core dependencies for JustSayIt
+PyQt6>=6.5.0
+torch>=2.0.0
+transformers>=4.30.0
+sounddevice>=0.4.6
+pillow>=9.5.0
+pynput>=1.7.6
+pyyaml>=6.0
+requests>=2.31.0
+numpy>=1.24.0
+librosa>=0.10.0
+opencv-python>=4.8.0
+pydantic>=2.0.0
+watchdog>=3.0.0
+
+# TTS specific dependencies
+TTS>=0.17.0
+espeak-ng>=1.51
+
+# OCR specific dependencies
+easyocr>=1.7.0
